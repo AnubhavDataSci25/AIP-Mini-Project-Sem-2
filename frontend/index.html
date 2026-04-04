@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal | Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">JobPortal</a>
+            <div class="ms-auto" id="nav-links">
+                <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+                <a href="register.html" class="btn btn-light">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero bg-light py-5 text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Find Your Dream Job Today</h1>
+            <p class="lead">The easiest way to get your next career move started.</p>
+            <a href="jobs.html" class="btn btn-primary btn-lg mt-3">Browse Jobs</a>
+        </div>
+    </header>
+
+    <footer class="text-center py-4 border-top mt-5">
+        <p>&copy; 2026 JobPortal. All rights reserved.</p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Simple UI check for login state
+        if (localStorage.getItem('token')) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const links = document.getElementById('nav-links');
+            links.innerHTML = `
+                <span class="text-white me-3">Welcome, ${user.name}</span>
+                <a href="${user.role === 'admin' ? 'dashboard.html' : 'jobs.html'}" class="btn btn-outline-light me-2">Dashboard</a>
+                <button onclick="logout()" class="btn btn-light">Logout</button>
+            `;
+        }
+    </script>
+</body>
+</html>
